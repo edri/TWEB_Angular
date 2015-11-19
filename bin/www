@@ -10,5 +10,28 @@ var server = app.listen(app.get('port'), function() {
 var io = require('socket.io')(server);
 
 io.on('connection', function(socket){
+    var nbYes = 0;
+    var nbNo = 0;
+    var nbIdk = 0;
+
   console.log('a user connected');
+
+  socket.on("vote", function(data) {
+      console.log(data.vote);
+
+      if (data.vote === "yes")
+      {
+          ++nbYes;
+      }
+      else if (data.vote === "no")
+      {
+          ++nbNo;
+      }
+      else if (data.vote === "idk")
+      {
+          ++nbIdk;
+      }
+
+      socket.emit("newVote", {yes: nbYes, no: nbNo, idk: nbIdk});
+  });
 });

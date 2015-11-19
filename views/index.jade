@@ -17,8 +17,3 @@ block content
     script(src='/socket.io/socket.io.js')
     script.
         var socket = io.connect();
-        
-        socket.on("news", function(data) {
-            console.log("Received!");
-            console.log(data);
-        });

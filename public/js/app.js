@@ -6,23 +6,23 @@
     	})
         .controller('PageController', function($scope, mySocket) {
             $scope.yesClick = function() {
-                console.log("Sending...");
-                mySocket.emit("news", {hello: "world"});
+                mySocket.emit("vote", {vote: "yes"});
             }
 
             $scope.noClick = function() {
-
+                mySocket.emit("vote", {vote: "no"});
             }
 
             $scope.idkClick = function() {
-
+                mySocket.emit("vote", {vote: "idk"});
             }
         })
-        .controller('DoughnutController', function($scope) {
-            $scope.labels	=	["Download	Sales",	"In-Store	Sales",	"Mail-Order	Sales"];
-    		$scope.data	=	[300,	500,	100];
-        })
-        .controller('SocketController', function(mysocket) {
+        .controller('DoughnutController', function($scope, mySocket) {
+            $scope.labels = ["Yes", "No", "I don't know"];
+    		$scope.data = [0, 0, 0];
 
+            mySocket.on("newVote", function(data) {
+                $scope.data = [data.yes, data.no, data.idk];
+            });
         });
 })();
