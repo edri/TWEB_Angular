@@ -1,0 +1,14 @@
+{
+  "name": "exangular",
+  "version": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "Chart.js": "~1.0.2",
+    "angular-chart.js": "~0.8.5"
+  }
+}

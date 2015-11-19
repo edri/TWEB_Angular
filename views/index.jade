@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    h1 Are you happy?
+    
+    button(ng-click='yesClick()')
+        | Yes
+    button(ng-click='noClick()')
+        | No
+    button(ng-click='idkClick()')
+        | I don't know
+            
+    div(ng-controller='DoughnutController')
+        //canvas#doughnut.chart.chart-line(chart-data='[data]', chart-labels='labels')
+        canvas#doughnut.chart.chart-doughnut(chart-data='data', chart-labels='labels')
+        
+    script(src='/socket.io/socket.io.js')
+    script.
+        var socket = io.connect();
+        
+        socket.on("news", function(data) {
+            console.log("Received!");
+            console.log(data);
+        });
